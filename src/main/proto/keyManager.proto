@@ -3,18 +3,34 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "br.com.zup.edu";
 option java_outer_classname = "KeyManager";
-option objc_class_prefix = "HLW";
 
 package br.com.zup.edu;
 
 service KeyManagerService {
-  rpc send (KeyManagerRequest) returns (KeyManagerReply) {}
+  rpc registerKey (NewKeyRequest) returns (NewKeyResponse) {}
 }
 
-message KeyManagerRequest {
-  string name = 1;
+message NewKeyRequest {
+  enum PixType {
+    UNKNOWN_KEY_TYPE = 0;
+    CPF = 1;
+    EMAIL = 2;
+    TELEFONE = 3;
+    CHAVE_ALEATORIA = 4;
+  }
+
+  enum AccountType {
+    UNKNOWN_ACCOUNT_TYPE = 0;
+    CONTA_POUPANCA = 1;
+    CONTA_CORRENTE = 2;
+  }
+
+  string userId = 1;
+  PixType pixType = 2;
+  string pixValue = 3;
+  AccountType accountType = 4;
 }
 
-message KeyManagerReply {
-  string message = 1;
+message NewKeyResponse {
+  string pixId = 1;
 }
