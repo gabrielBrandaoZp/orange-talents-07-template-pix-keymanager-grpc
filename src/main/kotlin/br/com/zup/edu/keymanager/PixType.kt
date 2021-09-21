@@ -7,10 +7,6 @@ enum class PixType {
                 return false
             }
 
-            if (!value.matches("^[0-9]{11}".toRegex())) {
-                return false
-            }
-
             return value.matches("^[0-9]{11}".toRegex())
         }
     },
