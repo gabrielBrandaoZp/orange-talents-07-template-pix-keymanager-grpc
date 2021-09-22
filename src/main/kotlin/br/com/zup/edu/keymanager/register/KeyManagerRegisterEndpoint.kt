@@ -3,6 +3,7 @@ package br.com.zup.edu.keymanager.register
 import br.com.zup.edu.KeyManagerRegisterServiceGrpc
 import br.com.zup.edu.NewKeyRequest
 import br.com.zup.edu.NewKeyResponse
+import br.com.zup.edu.shared.handlers.ErrorHandler
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Inject
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory
 import java.lang.IllegalStateException
 import javax.validation.ConstraintViolationException
 
+@ErrorHandler
 @Singleton
 class KeyManagerRegisterEndpoint(
     @Inject
@@ -26,29 +28,13 @@ class KeyManagerRegisterEndpoint(
             request.accountType)
 
         val newKey = request.toModel()
+        val createdKey = newPixKeyService.register(newKey)
 
-        try {
-            val createdKey = newPixKeyService.register(newKey)
-            responseObserver.onNext(NewKeyResponse.newBuilder()
+        with(responseObserver) {
+            onNext(NewKeyResponse.newBuilder()
                 .setPixId(createdKey)
                 .build())
-            responseObserver.onCompleted()
-        } catch (e: PixKeyInvalidTypeException) {
-            responseObserver.onError(Status.FAILED_PRECONDITION
-                .withDescription(e.message)
-                .asRuntimeException())
-        } catch (e: PixKeyAlreadyExistsException) {
-            responseObserver.onError(Status.ALREADY_EXISTS
-                .withDescription(e.message)
-                .asRuntimeException())
-        } catch (e: IllegalStateException) {
-            responseObserver.onError(Status.NOT_FOUND
-                .withDescription(e.message)
-                .asRuntimeException())
-        } catch (e: ConstraintViolationException) {
-            responseObserver.onError(Status.INVALID_ARGUMENT
-                .withDescription(e.message)
-                .asRuntimeException())
+            onCompleted()
         }
     }
 }

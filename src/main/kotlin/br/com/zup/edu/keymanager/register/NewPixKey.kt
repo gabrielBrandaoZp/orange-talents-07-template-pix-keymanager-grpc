@@ -1,15 +1,20 @@
 package br.com.zup.edu.keymanager.register
 
+import br.com.zup.edu.shared.validation.ValidPixKey
+import br.com.zup.edu.shared.validation.ValidUUID
 import io.micronaut.core.annotation.Introspected
 import java.util.*
+import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 
+@ValidPixKey
 @Introspected
 data class NewPixKey(
 
+    @field:ValidUUID
     @field:NotBlank
     val userId: String?,
 

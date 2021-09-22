@@ -1,18 +1,25 @@
 package br.com.zup.edu.keymanager.remove
 
 import br.com.zup.edu.keymanager.register.PixRepository
+import br.com.zup.edu.shared.validation.ValidUUID
+import io.micronaut.validation.Validated
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import java.util.*
 import javax.transaction.Transactional
+import javax.validation.constraints.NotBlank
 
+@Validated
 @Singleton
 class RemovePixKeyService(
     @Inject val pixRepository: PixRepository,
 ) {
 
     @Transactional
-    fun remove(userId: String, pixId: String) {
+    fun remove(
+        @NotBlank @ValidUUID(message = "Não é um formato válido de id") userId: String,
+        @NotBlank pixId: String,
+    ) {
         val userUUID = UUID.fromString(userId)
 
         val key = pixRepository.findByPixIdAndUserId(pixId, userUUID).orElseThrow {

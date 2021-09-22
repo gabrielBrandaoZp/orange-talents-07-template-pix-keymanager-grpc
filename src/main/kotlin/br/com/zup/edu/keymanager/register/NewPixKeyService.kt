@@ -2,13 +2,16 @@ package br.com.zup.edu.keymanager.register
 
 import br.com.zup.edu.keymanager.external.ErpItauClient
 import io.micronaut.http.HttpStatus
+import io.micronaut.validation.Validated
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
 import java.lang.IllegalStateException
 import javax.transaction.Transactional
+import javax.validation.Valid
 
 
+@Validated
 @Singleton
 class NewPixKeyService(
     @Inject
@@ -22,15 +25,16 @@ class NewPixKeyService(
 
 
     @Transactional
-    fun register(newPixKey: NewPixKey): String {
+    fun register(@Valid newPixKey: NewPixKey): String {
         logger.info("methos=register, msg=creating pix for user: {}, for account type: {}",
             newPixKey.userId,
             newPixKey.accountType)
 
-        val keyValidation = PixType.valueOf(newPixKey.pixType!!.name).validation(newPixKey.pixId)
-        if (!keyValidation) {
-            throw PixKeyInvalidTypeException("Tipo inválido de chave pix: ${newPixKey.pixType}")
-        }
+        //already validated by annotation @ValidPixKey
+//        val keyValidation = PixType.valueOf(newPixKey.pixType!!.name).validation(newPixKey.pixId)
+//        if (!keyValidation) {
+//            throw PixKeyInvalidTypeException("Tipo inválido de chave pix: ${newPixKey.pixType}")
+//        }
 
         if (pixRepository.existsByPixId(newPixKey.pixId)) {
             throw PixKeyAlreadyExistsException("Chave pix já cadastrada: ${newPixKey.pixId}")

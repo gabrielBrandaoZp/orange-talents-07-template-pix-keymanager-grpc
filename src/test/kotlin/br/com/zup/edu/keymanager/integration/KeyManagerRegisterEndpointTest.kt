@@ -104,7 +104,7 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.NOT_FOUND.code, status.code)
+            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
             assertEquals("Usuário não encontrado", status.description)
         }
     }
@@ -120,8 +120,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
@@ -136,8 +136,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
@@ -153,8 +153,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
@@ -170,8 +170,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
@@ -187,8 +187,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
@@ -204,8 +204,8 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
-            assertEquals("Tipo inválido de chave pix: ${invalidRequest.pixType}", status.description)
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
         }
     }
 
