@@ -1,9 +1,9 @@
 package br.com.zup.edu.factory
 
-import br.com.zup.edu.keymanager.Account
-import br.com.zup.edu.keymanager.AccountType
-import br.com.zup.edu.keymanager.Pix
-import br.com.zup.edu.keymanager.PixType
+import br.com.zup.edu.keymanager.register.Account
+import br.com.zup.edu.keymanager.register.AccountType
+import br.com.zup.edu.keymanager.register.Pix
+import br.com.zup.edu.keymanager.register.PixType
 import java.util.*
 
 class PixFactory {

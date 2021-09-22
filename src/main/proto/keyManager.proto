@@ -6,8 +6,12 @@ option java_outer_classname = "KeyManager";
 
 package br.com.zup.edu;
 
-service KeyManagerService {
+service KeyManagerRegisterService {
   rpc registerKey (NewKeyRequest) returns (NewKeyResponse) {}
+}
+
+service KeyManagerRemoveService {
+  rpc removeKey (RemoveKeyRequest) returns (RemoveKeyResponse) {}
 }
 
 message NewKeyRequest {
@@ -33,4 +37,13 @@ message NewKeyRequest {
 
 message NewKeyResponse {
   string pixId = 1;
+}
+
+message RemoveKeyRequest {
+  string userId = 1;
+  string pixValue = 2;
+}
+
+message RemoveKeyResponse {
+  bool result = 1;
 }

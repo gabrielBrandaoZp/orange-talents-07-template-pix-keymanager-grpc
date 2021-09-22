@@ -1,8 +1,8 @@
 package br.com.zup.edu.keymanager.external
 
-import br.com.zup.edu.keymanager.Account
+import br.com.zup.edu.keymanager.register.Account
 
-data class SearchUserResponse(
+data class SearchUserAccountResponse(
     val instituicao: InstituicaoResponse,
     val agencia: String,
     val numero: String,

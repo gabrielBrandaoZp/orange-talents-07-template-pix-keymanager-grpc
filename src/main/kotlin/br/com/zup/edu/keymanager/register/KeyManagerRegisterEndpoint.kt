@@ -1,9 +1,8 @@
-package br.com.zup.edu.keymanager
+package br.com.zup.edu.keymanager.register
 
-import br.com.zup.edu.KeyManagerServiceGrpc
+import br.com.zup.edu.KeyManagerRegisterServiceGrpc
 import br.com.zup.edu.NewKeyRequest
 import br.com.zup.edu.NewKeyResponse
-import br.com.zup.edu.keymanager.external.NewPixKeyService
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Inject
@@ -12,14 +11,14 @@ import org.slf4j.LoggerFactory
 import javax.validation.ConstraintViolationException
 
 @Singleton
-class KeyManagerEndpoint(
+class KeyManagerRegisterEndpoint(
     @Inject
     val pixRepository: PixRepository,
 
     @Inject
     val newPixKeyService: NewPixKeyService,
 
-    ) : KeyManagerServiceGrpc.KeyManagerServiceImplBase() {
+    ) : KeyManagerRegisterServiceGrpc.KeyManagerRegisterServiceImplBase() {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
     override fun registerKey(request: NewKeyRequest, responseObserver: StreamObserver<NewKeyResponse>) {
@@ -28,7 +27,7 @@ class KeyManagerEndpoint(
             request.userId,
             request.accountType)
 
-        val userExists = newPixKeyService.userExist(request.userId, request.accountType.toString())
+        val userExists = newPixKeyService.userExistsWithAccountType(request.userId, request.accountType.toString())
         if (!userExists) {
             responseObserver.onError(Status.NOT_FOUND
                 .withDescription("Usuário não encontrado")

@@ -1,10 +1,10 @@
 package br.com.zup.edu.keymanager.integration
 
-import br.com.zup.edu.KeyManagerServiceGrpc
+import br.com.zup.edu.KeyManagerRegisterServiceGrpc
 import br.com.zup.edu.NewKeyRequest
 import br.com.zup.edu.factory.PixFactory
 import br.com.zup.edu.factory.RequestFactory
-import br.com.zup.edu.keymanager.PixRepository
+import br.com.zup.edu.keymanager.register.PixRepository
 import io.grpc.ManagedChannel
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
@@ -21,9 +21,9 @@ import org.junit.jupiter.api.assertThrows
 import java.util.*
 
 @MicronautTest(transactional = false)
-internal class KeyManagerEndpointTest(
+internal class KeyManagerRegisterEndpointTest(
     @Inject
-    val grpcClient: KeyManagerServiceGrpc.KeyManagerServiceBlockingStub,
+    val grpcClient: KeyManagerRegisterServiceGrpc.KeyManagerRegisterServiceBlockingStub,
 
     @Inject
     val pixRepository: PixRepository,
@@ -244,8 +244,8 @@ internal class KeyManagerEndpointTest(
     class Clients {
 
         @Singleton
-        fun blockingStub(@GrpcChannel(GrpcServerChannel.NAME) channel: ManagedChannel): KeyManagerServiceGrpc.KeyManagerServiceBlockingStub {
-            return KeyManagerServiceGrpc.newBlockingStub(channel)
+        fun blockingStub(@GrpcChannel(GrpcServerChannel.NAME) channel: ManagedChannel): KeyManagerRegisterServiceGrpc.KeyManagerRegisterServiceBlockingStub {
+            return KeyManagerRegisterServiceGrpc.newBlockingStub(channel)
         }
     }
 }

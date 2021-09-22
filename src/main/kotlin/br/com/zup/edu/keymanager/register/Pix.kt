@@ -1,4 +1,4 @@
-package br.com.zup.edu.keymanager
+package br.com.zup.edu.keymanager.register
 
 import java.time.LocalDateTime
 import java.util.*
@@ -40,4 +40,8 @@ class Pix(
     var id: Long? = null
 
     val createdIn: LocalDateTime = LocalDateTime.now()
+
+    fun isOwnerOfPixKey(userId: UUID): Boolean {
+        return this.userId == userId
+    }
 }

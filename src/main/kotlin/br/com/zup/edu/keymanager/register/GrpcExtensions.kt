@@ -1,4 +1,4 @@
-package br.com.zup.edu.keymanager
+package br.com.zup.edu.keymanager.register
 
 import br.com.zup.edu.NewKeyRequest
 

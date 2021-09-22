@@ -1,6 +1,6 @@
 package br.com.zup.edu.keymanager.unit
 
-import br.com.zup.edu.keymanager.PixType
+import br.com.zup.edu.keymanager.register.PixType
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
