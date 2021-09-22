@@ -28,4 +28,3 @@ erp:
       host: ${ITAU_CLIENT_HOST:`http://localhost:9091`}
       endpoint:
           contas: '/api/v1/clientes/{clienteId}/contas'
-          client: '/api/v1/clientes/{clienteId}'

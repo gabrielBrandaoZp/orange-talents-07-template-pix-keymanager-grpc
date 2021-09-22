@@ -10,8 +10,8 @@ import io.micronaut.http.client.annotation.Client
 interface ErpItauClient {
 
     @Get("\${erp.itau.client.endpoint.contas}")
-    fun searchUserAccountById(@PathVariable clienteId: String, @QueryValue tipo: String): HttpResponse<SearchUserAccountResponse>
-
-    @Get("\${erp.itau.client.endpoint.client}")
-    fun searchUserById(@PathVariable clienteId: String): HttpResponse<Any>
+    fun searchUserAccountById(
+        @PathVariable clienteId: String,
+        @QueryValue tipo: String,
+    ): HttpResponse<SearchUserAccountResponse>
 }
