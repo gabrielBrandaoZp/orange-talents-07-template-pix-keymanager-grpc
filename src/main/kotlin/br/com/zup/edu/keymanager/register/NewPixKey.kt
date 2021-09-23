@@ -30,7 +30,7 @@ data class NewPixKey(
 
     fun toModel(account: Account): Pix {
         return Pix(
-            pixId = if (this.pixType == PixType.CHAVE_ALEATORIA) UUID.randomUUID().toString() else this.pixId!!,
+            pixId = if (this.pixType == PixType.CHAVE_ALEATORIA) "" else this.pixId!!,
             userId = UUID.fromString(this.userId),
             pixType = PixType.valueOf(this.pixType!!.name),
             accountType = AccountType.valueOf(accountType!!.name),

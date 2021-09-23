@@ -42,7 +42,7 @@ class Pix(
     val createdIn: LocalDateTime = LocalDateTime.now()
 
     fun update(pixId: String) {
-        if (this.pixType == PixType.CHAVE_ALEATORIA) {
+        if (this.pixType.equals(PixType.CHAVE_ALEATORIA)) {
             this.pixId = pixId
         }
     }
