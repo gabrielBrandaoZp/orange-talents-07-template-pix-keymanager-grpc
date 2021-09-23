@@ -1,4 +1,4 @@
-package br.com.zup.edu.keymanager.external
+package br.com.zup.edu.keymanager.external.itau
 
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Get

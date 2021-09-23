@@ -16,6 +16,7 @@ class PixFactory {
 
         private val account = Account(
             institution = "Itau",
+            ispb = "60701190",
             agency = "1234",
             accountNumber = "56654",
             titularName = "Rafael Ponte",

@@ -1,4 +1,4 @@
-package br.com.zup.edu.keymanager.external
+package br.com.zup.edu.keymanager.external.itau
 
 import br.com.zup.edu.keymanager.register.Account
 
@@ -12,6 +12,7 @@ data class SearchUserAccountResponse(
     fun toModel(): Account {
         return Account(
             institution = this.instituicao.nome,
+            ispb = this.instituicao.ispb,
             titularName = this.titular.nome,
             cpf = this.titular.cpf,
             agency = this.agencia,

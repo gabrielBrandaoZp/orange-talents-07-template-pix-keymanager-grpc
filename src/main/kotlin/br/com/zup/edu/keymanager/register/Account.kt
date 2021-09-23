@@ -10,6 +10,9 @@ class Account(
     val institution: String,
 
     @field:NotBlank
+    val ispb: String,
+
+    @field:NotBlank
     val agency: String,
 
     @field:NotBlank

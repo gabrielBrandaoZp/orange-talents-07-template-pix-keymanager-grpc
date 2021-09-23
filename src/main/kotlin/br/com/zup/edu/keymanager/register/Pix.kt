@@ -14,7 +14,7 @@ class Pix(
     @field:NotBlank
     @field:Size(max = 77)
     @Column(unique = true, nullable = false)
-    val pixId: String,
+    var pixId: String,
 
     @field:NotNull
     @Column(nullable = false)
@@ -41,7 +41,9 @@ class Pix(
 
     val createdIn: LocalDateTime = LocalDateTime.now()
 
-    fun isOwnerOfPixKey(userId: UUID): Boolean {
-        return this.userId == userId
+    fun update(pixId: String) {
+        if (this.pixType == PixType.CHAVE_ALEATORIA) {
+            this.pixId = pixId
+        }
     }
 }

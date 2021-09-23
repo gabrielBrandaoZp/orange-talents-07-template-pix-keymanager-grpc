@@ -4,13 +4,10 @@ import br.com.zup.edu.KeyManagerRegisterServiceGrpc
 import br.com.zup.edu.NewKeyRequest
 import br.com.zup.edu.NewKeyResponse
 import br.com.zup.edu.shared.handlers.ErrorHandler
-import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
-import java.lang.IllegalStateException
-import javax.validation.ConstraintViolationException
 
 @ErrorHandler
 @Singleton

@@ -1,5 +1,7 @@
 package br.com.zup.edu.keymanager.register
 
+import br.com.zup.edu.keymanager.external.bcb.PixTypeBcb
+
 enum class PixType {
     CPF {
         override fun validation(value: String?): Boolean {
@@ -34,6 +36,15 @@ enum class PixType {
             return value.isNullOrBlank()
         }
     };
+
+    fun converter(): PixTypeBcb {
+        return when (this) {
+            CPF -> PixTypeBcb.CPF
+            EMAIL -> PixTypeBcb.EMAIL
+            TELEFONE -> PixTypeBcb.PHONE
+            else -> PixTypeBcb.RANDOM
+        }
+    }
 
     abstract fun validation(value: String?): Boolean
 }

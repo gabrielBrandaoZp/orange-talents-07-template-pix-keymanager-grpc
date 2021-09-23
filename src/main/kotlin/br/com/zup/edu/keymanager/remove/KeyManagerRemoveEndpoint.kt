@@ -4,7 +4,6 @@ import br.com.zup.edu.KeyManagerRemoveServiceGrpc
 import br.com.zup.edu.RemoveKeyRequest
 import br.com.zup.edu.RemoveKeyResponse
 import br.com.zup.edu.shared.handlers.ErrorHandler
-import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
