@@ -13,4 +13,6 @@ interface PixRepository : JpaRepository<Pix, Long> {
     fun findByPixIdAndUserId(pixId: String, userId: UUID): Optional<Pix>
 
     fun findByPixId(pixValue: String): Optional<Pix>
+
+    fun findAllByUserId(userId: UUID): List<Pix>
 }

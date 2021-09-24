@@ -19,6 +19,26 @@ service KeyManagerSearchPixService {
   rpc searchKeyExternal (SearchKeyExternalRequest) returns (SearchKeyExternalResponse) {}
 }
 
+service KeyManagerListUserPixService {
+  rpc listUserPix (ListUserPixRequest) returns (ListUserPixResponse) {}
+}
+
+message ListUserPixRequest {
+  string userId = 1;
+}
+
+message ListUserPixResponse {
+  string userId = 1;
+
+  message PixDetails {
+    int64 pixId = 1;
+    PixInfo pixInfo = 2;
+    string accountType = 3;
+  }
+
+  repeated PixDetails pixDetails = 2;
+}
+
 message SearchKeyExternalRequest {
   string pixValue = 1;
 }
