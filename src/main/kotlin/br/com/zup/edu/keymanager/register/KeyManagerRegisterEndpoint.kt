@@ -4,6 +4,7 @@ import br.com.zup.edu.KeyManagerRegisterServiceGrpc
 import br.com.zup.edu.NewKeyRequest
 import br.com.zup.edu.NewKeyResponse
 import br.com.zup.edu.shared.handlers.ErrorHandler
+import br.com.zup.edu.shared.toModel
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
