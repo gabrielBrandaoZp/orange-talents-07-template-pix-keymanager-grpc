@@ -9,7 +9,7 @@ import io.micronaut.http.client.annotation.Client
 @Client(value = "\${erp.itau.client.host}")
 interface ErpItauClient {
 
-    @Get("\${erp.itau.client.endpoint.contas}")
+    @Get("\${erp.itau.client.endpoint.clientes}/{clienteId}/contas")
     fun searchUserAccountById(
         @PathVariable clienteId: String,
         @QueryValue tipo: String,
