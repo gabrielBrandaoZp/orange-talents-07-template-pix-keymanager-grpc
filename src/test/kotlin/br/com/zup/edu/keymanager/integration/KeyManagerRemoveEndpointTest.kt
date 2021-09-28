@@ -5,7 +5,6 @@ import br.com.zup.edu.RemoveKeyRequest
 import br.com.zup.edu.factory.PixFactory
 import br.com.zup.edu.keymanager.external.bcb.BcbClient
 import br.com.zup.edu.keymanager.external.bcb.DeletePixKeyRequest
-import br.com.zup.edu.keymanager.external.bcb.DeletedPixKeyResponse
 import br.com.zup.edu.keymanager.register.Pix
 import br.com.zup.edu.keymanager.register.PixRepository
 import io.grpc.ManagedChannel
@@ -122,7 +121,7 @@ internal class KeyManagerRemoveEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
             assertEquals("Error trying to remove pix key in Banco Central do Brasil", status.description)
         }
 
@@ -130,8 +129,6 @@ internal class KeyManagerRemoveEndpointTest(
 
     @Test
     internal fun `should not remove a pix key when not found in Banco Central do Brasil`() {
-
-
         `when`(bcbClient.removePixBcb("ponte@email.com", DeletePixKeyRequest(
             key = "ponte@email.com",
             participant = "60701190"
@@ -147,7 +144,7 @@ internal class KeyManagerRemoveEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
             assertEquals("Error trying to remove pix key in Banco Central do Brasil", status.description)
         }
     }

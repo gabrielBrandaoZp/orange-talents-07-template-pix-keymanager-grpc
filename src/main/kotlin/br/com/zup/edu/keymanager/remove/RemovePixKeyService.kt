@@ -8,7 +8,6 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.validation.Validated
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import java.lang.IllegalArgumentException
 import java.util.*
 import javax.transaction.Transactional
 import javax.validation.constraints.NotBlank
@@ -41,7 +40,7 @@ class RemovePixKeyService(
         )
 
         if (response.status != HttpStatus.OK) {
-            throw IllegalArgumentException("Error trying to remove pix key in Banco Central do Brasil")
+            throw IllegalStateException("Error trying to remove pix key in Banco Central do Brasil")
         }
     }
 }

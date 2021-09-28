@@ -24,8 +24,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.doThrow
-import java.lang.IllegalArgumentException
 import java.util.*
 
 @MicronautTest(transactional = false)
@@ -138,7 +136,7 @@ internal class KeyManagerRegisterEndpointTest(
         }
 
         with(error) {
-            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertEquals(Status.FAILED_PRECONDITION.code, status.code)
             assertEquals("Error trying to registry pix key in Banco Central do Brasil", status.description)
         }
     }

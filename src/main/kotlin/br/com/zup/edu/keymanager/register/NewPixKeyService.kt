@@ -7,7 +7,6 @@ import io.micronaut.validation.Validated
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
-import java.lang.IllegalArgumentException
 import javax.transaction.Transactional
 import javax.validation.Valid
 
@@ -47,7 +46,7 @@ class NewPixKeyService(
         val responseBcb = bcbClient.registerPixBcb(bcbRequest)
 
         if (responseBcb.status != HttpStatus.CREATED) {
-            throw IllegalArgumentException("Error trying to registry pix key in Banco Central do Brasil")
+            throw IllegalStateException("Error trying to registry pix key in Banco Central do Brasil")
         }
 
         pix.update(responseBcb.body()!!.key)
