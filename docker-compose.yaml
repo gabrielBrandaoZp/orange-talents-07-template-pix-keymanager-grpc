@@ -3,7 +3,27 @@ services:
   postgres:
     image: 'postgres:alpine'
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: changeme
       POSTGRES_DB: db_keymanager
+
+  keymanager-grpc:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: keymanager-grpc-service
+    image: "brandaogabriel/keymanager-grpc:latest"
+    ports:
+      - "50051:50051"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "jdbc:postgresql://postgres:5432/db_keymanager"
+      ITAU_CLIENT_HOST: "http://erp-itau:9091/"
+      BCB_CLIENT_HOST: "http://bcb:8082/"
+
+networks:
+  default:
+    external:
+      name: local-net
